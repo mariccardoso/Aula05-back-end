@@ -1,8 +1,8 @@
-import { Router } from "express"
+import { Router } from "express";
 
-const emocoesRoutes = Router()
+const emocoesRoutes = Router();
 
-const emocoes = [
+let emocoes = [
     {
         id: 1,
         nome: "Nostalgia",
@@ -22,12 +22,11 @@ const emocoes = [
     },
 ]
 
-app.get("/emocoes",(req, res) => {
-    return res.status(200)
-    .send(emocoes)
+emocoesRoutes.get("/",(req, res) => {
+    return res.status(200).send(emocoes)
 })
 
-app.post("/emocoes",(req, res) => {
+emocoesRoutes.post("/",(req, res) => {
     const{nome, cor} = req.body
     const newEmotion = {
         id: emocoes.length + 1,
@@ -35,7 +34,7 @@ app.post("/emocoes",(req, res) => {
         cor: cor
     }
     emocoes.push(newEmotion)
-    return res.status(200)
-    .send(emocoes)
-})
+    return res.status(201).send(emocoes)
+});
 
+export default emocoesRoutes;

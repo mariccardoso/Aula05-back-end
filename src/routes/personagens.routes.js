@@ -2,7 +2,7 @@ import { Router } from "express"
 
 const personagensRoutes = Router()
 
-const personagens = [
+let personagens = [
     {
         id: 100,
         nome: "Relampago Mcqueen",
@@ -29,7 +29,9 @@ const personagens = [
     },
 ]
 
-app.get("/personagens",(req, res) => {
+personagensRoutes.get("/",(req, res) => {
     return res.status(200)
     .send(personagens)
 })
+
+export default personagensRoutes;
