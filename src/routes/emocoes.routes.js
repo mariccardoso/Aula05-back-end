@@ -90,8 +90,10 @@ emocoesRoutes.delete("/:id", (req, res) => {
         });
     }
 
+    emocoes = emocoes.filter((emotion)=> emotion.id != id)
+
     return  res.status(200).send({
-        message: "Emoção encontrada",
+        message: "Emoção deletada",
         emocao,
     })
 });
