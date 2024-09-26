@@ -53,7 +53,46 @@ emocoesRoutes.get("/:id", (req, res) => {
 
     return  res.status(200).send({
         message: "Emoção encontrada",
-        emocao
+        emocao,
+    })
+});
+
+emocoesRoutes.put("/:id", (req, res) => {
+    const{id} = req.params;
+
+    const emocao = emocoes.find((emotion) => emotion.id == id);
+
+    if(!emocao){ 
+        return res.status(404).send({
+        message: "Emoção não encontrada!",
+        });
+    }
+
+    const{nome, cor} = req.body
+    emocao.nome = nome
+    emocao.cor = cor;
+
+    return  res.status(200).send({
+        message: "Emoção atualizada",
+        emocao,
+    })
+})
+
+emocoesRoutes.delete("/:id", (req, res) => {
+    const{id} = req.params; 
+
+    //console.log(id);
+    const emocao = emocoes.find((emotion) => emotion.id == id)
+
+    if(!emocao){ 
+        return res.status(404).send({
+        message: "Emoção não encontrada!",
+        });
+    }
+
+    return  res.status(200).send({
+        message: "Emoção encontrada",
+        emocao,
     })
 });
 
